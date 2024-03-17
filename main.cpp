@@ -2,11 +2,8 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <sstream>
 
 using namespace std;
-
-void embaralhar(vector<string>& baralho);
 
 void embaralhar(vector<string>& baralho) {
   srand(time(0));
@@ -24,9 +21,8 @@ int main() {
   for (int n = 0; n < 4; ++n) {
     for (int i = 1; i <= 13; ++i) {
       for (int b = 1; b <= 2; ++b) {
-        stringstream ss;
-        ss << (n + 1) << "-" << (i < 10 ? "0" : "") << i << "-" << b;
-        baralho[(n * 26) + ((i - 1) * 2) + (b - 1)] = ss.str();
+        string s = to_string(n + 1) + "-" + (i < 10 ? "0" : "") + to_string(i) + "-" + to_string(b);
+        baralho[(n * 26) + ((i - 1) * 2) + (b - 1)] = s;
       }
     }
   }
@@ -35,7 +31,7 @@ int main() {
 
   vector<vector<string>> mao(4, vector<string>(11));
   int cartaAtual = 0;
-  
+
   for (int j = 0; j < 4; ++j) {
     for (int c = 0; c < 11; ++c) {
       mao[j][c] = baralho[cartaAtual++];
